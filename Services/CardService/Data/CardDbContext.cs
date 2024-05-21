@@ -1,4 +1,5 @@
 ﻿using CardService.Entities;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace CardService.Data;
@@ -15,9 +16,9 @@ public class CardDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         // Add in memory outbox
-        //modelBuilder.AddInboxStateEntity();
-        //modelBuilder.AddOutboxMessageEntity();
-        //modelBuilder.AddOutboxStateEntity();
+        modelBuilder.AddInboxStateEntity();
+        modelBuilder.AddOutboxMessageEntity();
+        modelBuilder.AddOutboxStateEntity();
 
         // seed data
         modelBuilder.Entity<Card>().HasData(
